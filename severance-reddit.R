@@ -13,7 +13,8 @@ sped <- severance_episode_discussion %>%
   mutate(title = str_remove(title, "Severance - ")) %>% 
   mutate(title = str_remove(title, "( - )*(Post-)*Episode Discussion")) %>% 
   mutate(title = str_remove_all(title, '"')) %>% 
-  mutate(title = str_replace(title, "s ", "'s "))
+  mutate(title = str_replace(title, "s ", "'s ")) %>% 
+  mutate(title = str_replace(title, "Ovaltine", "Hello, Ms. Cobel"))
 
 pal <- c("#F8AAB6", "#8BE076", "#4CB4E7", "#A25056", "#00957E", "#235BA8")
 
@@ -23,7 +24,7 @@ f2 <- "Bricolage Grotesque 12pt Condensed"
 
 ggplot(sped) +
   geom_col(aes(comments, title), fill = pal[6]) +
-  geom_text(aes(3e2, title, label = title), hjust = 0, size = 7, family = f1, color = "white") +
+  geom_text(aes(2e2, title, label = title), hjust = 0, size = 7, family = f1, color = "white") +
   scale_y_discrete(limits = rev) +
   scale_x_continuous(expand = c(0, 0), labels = scales::number) +
   labs(
